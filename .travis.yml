@@ -120,5 +120,9 @@ deploy:
   api_key: "${GITHUB_OAUTH_TOKEN}"
   file: ${TRAVIS_BUILD_DIR}/wheelhouse/opencv*
   skip_cleanup: true
+  on:
+    branches:
+      only:
+        - master
   
  
