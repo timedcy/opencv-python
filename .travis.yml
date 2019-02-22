@@ -121,5 +121,7 @@ deploy:
   file: ${TRAVIS_BUILD_DIR}/wheelhouse/opencv*
   skip_cleanup: true
   on: master
+    tag: false
+  draft: true
   
  
