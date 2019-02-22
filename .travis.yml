@@ -116,6 +116,7 @@ before_cache: |
     set +x
 
 before_deploy:
+  file_glob: true
   - export RELEASE_PKG_FILE=$(ls ${TRAVIS_BUILD_DIR}/wheelhouse/*)
   - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
   
