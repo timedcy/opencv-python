@@ -114,11 +114,15 @@ before_cache: |
         
     fi
     set +x
- 
+
+before_deploy:
+  - export RELEASE_PKG_FILE=$(ls ${TRAVIS_BUILD_DIR}/wheelhouse/*)
+  - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
+  
 deploy:
   provider: releases
   api_key: "${GITHUB_OAUTH_TOKEN}"
-  file: ${TRAVIS_BUILD_DIR}/wheelhouse/opencv*
+  file: ${RELEASE_PKG_FILE}
   skip_cleanup: true
   on: master
     tag: false
