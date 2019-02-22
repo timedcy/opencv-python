@@ -122,7 +122,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key: "${GITHUB_OAUTH_TOKEN}"
-  file: ${RELEASE_PKG_FILE}
+  file: "${RELEASE_PKG_FILE}"
   skip_cleanup: true
   on: master
     tag: false
