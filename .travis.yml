@@ -100,32 +100,12 @@ script: |
     
     test "$rc" -eq 0
 
-before_cache: |
-    # Cleanup dirs to be cached
-    set -x
-    if [ -n "$IS_OSX" ]; then
-
-        # When Taps is cached, this dir causes "Error: file exists" on `brew update`
-        if [ -e "$(brew --repository)/Library/Taps/homebrew/homebrew-cask/homebrew-cask" ]; then
-            rm -rf "$(brew --repository)/Library/Taps/homebrew/homebrew-cask/homebrew-cask"
-        fi
-
-        brew_cache_cleanup
-        
-    fi
-    set +x
-
-before_deploy:
-  file_glob: true
-  - export RELEASE_PKG_FILE=$(ls ${TRAVIS_BUILD_DIR}/wheelhouse/*)
-  - echo "deploying $RELEASE_PKG_FILE to GitHub releases"
-  
 deploy:
+  skip_cleanup: true
   provider: releases
   api_key: "${GITHUB_OAUTH_TOKEN}"
   file_glob: true
-  file: "${RELEASE_PKG_FILE}"
-  skip_cleanup: true
+  file: "./wheelhouse/*"
   on: master
     tag: false
   draft: true
