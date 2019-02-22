@@ -105,7 +105,7 @@ deploy:
   provider: releases
   api_key: "${GITHUB_OAUTH_TOKEN}"
   file_glob: true
-  file: "./wheelhouse/*"
+  file: "./wheelhouse/opencv*whl"
   on: master
     tag: false
   draft: true
